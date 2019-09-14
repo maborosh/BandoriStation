@@ -16,4 +16,5 @@ HTTP/HTTPS 请求地址 api.bandoristation.com, API支持GET请求，参数通�
 
 参数
 | 字段名 | 数据类型 | 说明 |
+| ---- | --- | ------- |
 | latest_time | 13位时间戳 | 选填参数，填入之后将不返回该时间之前的数据 |
