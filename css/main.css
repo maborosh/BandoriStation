@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    color: #3e3e3e;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    background-color: #ff3b72;
+    z-index: 50;
+}
+
+.nav-bar-brand {
+    font-size: 24px;
+    color: white;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-left: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.background {
+    position: fixed;
+    z-index: -10;
+    background-image: url("../assets/background_pattern.png");
+    background-repeat: repeat;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    padding-top: 50px;
+}
+
+.room-number-data-container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 810px) {
+    .room-number-data-container {
+        width: calc(100% - 10px);
+    }
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.flip-list-enter {
+    opacity: 0;
+    transform: translateX(-60px);
+}
+.flip-list-leave-to {
+    opacity: 0;
+    transform: translateX(60px);
+}
+.flip-list-leave-active {
+    position: absolute;
+}
+
+.room-number-data {
+    background-color: white;
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 8px 20px;
+    transition: all 0.5s;
+}
+
+.room-number-data-user-info-username {
+    font-weight: bold;
+}
+
+.room-number-data-time {
+    color: rgb(150, 150, 150);
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.room-number-data-msg-container {
+    margin-top: 10px;
+}
+
+.room-number-data-number {
+    font-weight: bold;
+}
+
+.room-number-data-number-copy {
+    cursor: pointer;
+}
+
+.room-number-data-raw-msg {
+    display: block;
+}
