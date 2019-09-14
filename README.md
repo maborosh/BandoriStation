@@ -12,9 +12,9 @@ HTTP/HTTPS 请求地址 api.bandoristation.com, API支持GET请求，参数通�
 
 ### HTTP/HTTPS
 
-'''
+```
 /?function=query_room_number
-'''
+```
 
 #### 参数
 
