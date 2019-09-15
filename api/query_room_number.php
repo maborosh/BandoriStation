@@ -7,6 +7,12 @@ function query_room_number($latest_time = null)
             $latest_time = $_GET['latest_time'];
         }
     }
+    if ($latest_time and (!is_numeric($latest_time) or strlen($latest_time) != 13)) {
+        return array(
+            'status' => 'failure',
+            'response' => 'illegal_timestamp_formal'
+        );
+    }
 
     $redis = new Redis();
     $redis->connect('127.0.0.1');
@@ -16,8 +22,7 @@ function query_room_number($latest_time = null)
     $room_number_list = $redis->lRange($redis_key, 0, -1);
     for ($i = 0; $i < count($room_number_list); $i++) {
         $room_number_array = json_decode($room_number_list[$i], true);
-        $duration = $timestamp - $room_number_array['time'];
-        if ($duration <= 120000) {
+        if ($timestamp - $room_number_array['time'] <= 120000) {
             if ($latest_time) {
                 if ($room_number_array['time'] > $latest_time) {
                     set_username($room_number_array);
@@ -32,7 +37,10 @@ function query_room_number($latest_time = null)
         }
     }
 
-    return $room_number_set;
+    return array(
+        'status' => 'success',
+        'response' => $room_number_set
+    );
 }
 
 function set_username(&$room_number_array)
