@@ -4,6 +4,9 @@ The room number collection platform of Bang Dream! Girls Band Party!
 
 邦邦车牌/房间收集平台
 
+QQ群内接入方式：
+- Tsugu
+
 ## API说明
 
 HTTP/HTTPS 请求地址 api.bandoristation.com，API支持GET请求，参数通过URL参数传入，响应数据为JSON格式
