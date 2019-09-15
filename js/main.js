@@ -29,7 +29,7 @@ window.onload = function() {
         ws.onmessage = function (event) {
             let data = JSON.parse(event.data);
             if (data['status'] === 'success') {
-                appendData(data_list.$data.room_number_list, data['data']);
+                appendData(data_list.$data.room_number_list, data['response']);
             } else {
                 ws.close();
                 alert('数据获取失败');
@@ -64,7 +64,7 @@ function fetchDataFromAPI(data_list) {
             try {
                 let data = JSON.parse(xml_http.responseText);
                 if (data['status'] === 'true') {
-                    appendData(data_list, data['data']);
+                    appendData(data_list, data['response']);
                 } else {
                     clearInterval(timer_id);
                     alert('数据获取失败');
