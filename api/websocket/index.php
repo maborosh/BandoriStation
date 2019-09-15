@@ -11,15 +11,9 @@ $worker = new Worker('websocket://127.0.0.1:9000');
 $worker->onWorkerStart = function($worker) {
     Timer::add(0.5, function() use($worker) {
         $data = query_room_number();
-        if ($data) {
-            $response_data = json_encode(
-                array(
-                    'status' => 'success',
-                    'data' => $data
-                )
-            );
+        if ($data['response']) {
             foreach($worker->connections as $connection) {
-                $connection->send($response_data);
+                $connection->send(json_encode($data));
             }
         }
     });
