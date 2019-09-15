@@ -4,8 +4,9 @@ The room number collection platform of Bang Dream! Girls Band Party!
 
 邦邦车牌/房间收集平台
 
-QQ群内接入方式：
-- Tsugu
+QQ群内机器人接入：
+- Tsugu (免费) 拉群前请联系QQ 1810972564
+- mabo (收费) 购买机器人请见 https://mabo.ink/?help/purchase_agreement
 
 ## API说明
 
