@@ -2,13 +2,13 @@
 
 The room number collection platform of Bang Dream! Girls Band Party!
 
-邦邦车牌收集平台
+邦邦车牌/房间收集平台
 
 ## API说明
 
-HTTP/HTTPS 请求地址 api.bandoristation.com，API支持GET请求，参数通过URL参数传入，响应数据为JSON格式。
+HTTP/HTTPS 请求地址 api.bandoristation.com，API支持GET请求，参数通过URL参数传入，响应数据为JSON格式
 
-## 查询车牌
+## 查询房间数据
 
 ### HTTP/HTTPS
 
@@ -26,7 +26,7 @@ HTTP/HTTPS 请求地址 api.bandoristation.com，API支持GET请求，参数通�
 
 | 字段名 | 数据类型 | 说明 |
 | ---- | --- | ------- |
-| status | string | success / failure |
+| status | string | success/failure |
 | response | array/string | status为success时返回数据array，为failure时返回string |
 
 #### 房间数据
@@ -45,4 +45,30 @@ HTTP/HTTPS 请求地址 api.bandoristation.com，API支持GET请求，参数通�
 
 ### WebSocket
 
-请求地址 wss://api.bandoristation.com:50443 
+请求地址 wss://api.bandoristation.com:50443 ，本接口将会定时返回房间数据，数据格式与HTTP/HTTPS接口的返回数据相同
+
+## 提交房间数据
+
+目前仅提供HTTP/HTTPS接口，想要成为房间数据提供的一员可以QQ加2287477889好友，如果加不了也可以发送邮件给2287477889@qq.com，我会主动联系你
+
+```
+/?function=submit_room_number
+```
+
+#### 参数
+
+| 字段名 | 数据类型 | 说明 |
+| ---- | --- | ------- |
+| number | number | 房间号 |
+| user_id | number | 用户的唯一识别码 |
+| raw_message | string | 房间的说明文字/原始信息 |
+| source | string | 房间数据来源 |
+| token | string | 口令 |
+| type | number | 房间类型，选填参数，可选项为25、18、12、7 |
+
+#### 响应数据
+
+| 字段名 | 数据类型 | 说明 |
+| ---- | --- | ------- |
+| status | string | success/failure |
+| response | string | status为success时返回空，为failure时返回原因 |
