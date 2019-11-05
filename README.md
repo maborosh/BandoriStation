@@ -79,7 +79,7 @@ user_info:
 | raw_message | string | 房间的说明文字/原始信息 | 如果使用GET方式传入需要URL编码 |
 | source | string | 房间数据来源 | 机器人或者平台名称，如果是中文或者其他非英文、数字的字符并且使用GET方式传入需要URL编码 |
 | token | string | 口令 |
-| type | string | 25|18|12|7|other | 选填参数，房间类型 |
+| type | string | 25/18/12/7/other | 选填参数，房间类型 |
 
 #### 响应数据
 
