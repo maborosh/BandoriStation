@@ -15,7 +15,7 @@ The room number collection platform of Bang Dream! Girls Band Party!
 API地址，支持HTTP和HTTPS协议
 
 ```url
-api.bandoristation.com
+api.bandoristation.com/
 ```
 
 API支持GET和POST两种请求方式，返回数据为JSON格式
