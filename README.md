@@ -123,6 +123,8 @@ user_info:
 | status | string | success/failure |
 | response | object/string | status为success时返回object，为failure时返回原因 |
 
+response:
+
 | 字段名 | 数据类型 | 说明 |
 | --- | --- | --- |
 | online_number | number | 在线人数 |
