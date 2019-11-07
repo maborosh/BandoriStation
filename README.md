@@ -12,7 +12,25 @@ The room number collection platform of Bang Dream! Girls Band Party!
 
 ## API说明
 
-HTTP/HTTPS 请求地址 api.bandoristation.com，API支持GET请求，参数通过URL参数传入，响应数据为JSON格式
+API地址，支持HTTP和HTTPS协议
+
+```url
+api.bandoristation.com
+```
+
+API支持GET和POST两种请求方式，返回数据为JSON格式
+
+使用GET请求时参数通过URL参数传入
+
+```url
+https://api.bandoristation.com/?function=query_room_number
+```
+
+使用POST请求时参数通过JSON传入
+
+```json
+{"function":"query_room_number"}
+```
 
 ## 查询房间数据
 
@@ -87,3 +105,24 @@ user_info:
 | --- | --- | --- |
 | status | string | success/failure |
 | response | string | status为success时返回空字符串，为failure时返回原因 |
+
+## 获取在线人数
+
+获取停留在主页的人数
+
+#### 参数
+
+| 字段名 | 数据类型 | 填入值 | 说明 |
+| --- | --- | --- | --- |
+| function | string | get_online_number |
+
+#### 响应数据
+
+| 字段名 | 数据类型 | 说明 |
+| --- | --- | --- |
+| status | string | success/failure |
+| response | object/string | status为success时返回object，为failure时返回原因 |
+
+| 字段名 | 数据类型 | 说明 |
+| --- | --- | --- |
+| online_number | number | 在线人数 |
