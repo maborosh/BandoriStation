@@ -83,7 +83,6 @@ function Ajax(request, url, method, json_parse, callback) {
         }
         xml_http.open(method, url, true);
         xml_http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xml_http.setRequestHeader("Cache-Control", "no-cache");
         xml_http.send();
     } else {
         xml_http.open(method, url, true);
