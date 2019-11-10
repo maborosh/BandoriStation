@@ -1,11 +1,11 @@
 <?php
 
-function submit_room_number()
+function submit_room_number($request)
 {
     $room_number_array = array();
-    if (isset($_GET['number'])) {
-        if ((strlen($_GET['number']) == 5 or strlen($_GET['number']) == 6) and is_numeric($_GET['number'])) {
-            $room_number_array['number'] = $_GET['number'];
+    if (isset($request['number'])) {
+        if (preg_match('/^[0-9]{5,6}$/', $request['number'])) {
+            $room_number_array['number'] = intval($request['number']);
         } else {
             return array(
                 'status' => 'failure',
@@ -15,38 +15,46 @@ function submit_room_number()
     } else {
         return array(
             'status' => 'failure',
-            'response' => 'lack_number_parameter'
+            'response' => 'miss_number_parameter'
         );
     }
 
-    if (isset($_GET['user_id'])) {
-        if (is_numeric($_GET['user_id'])) {
-            $room_number_array['user_id'] = $_GET['user_id'];
+    if (isset($request['raw_message'])) {
+        if ($request['raw_message'] == $request['number']) {
+            return array(
+                'status' => 'failure',
+                'response' => 'miss_raw_message_description'
+            );
+        } elseif (strstr($request['raw_message'], $request['number'])) {
+            if ($request['method'] == 'GET') {
+                $room_number_array['raw_message'] = urldecode(trim($request['raw_message']));
+            } else {
+                $room_number_array['raw_message'] = trim($request['raw_message']);
+            }
         } else {
             return array(
                 'status' => 'failure',
-                'response' => 'illegal_user_id_formal'
+                'response' => 'illegal_raw_message'
             );
         }
     } else {
         return array(
             'status' => 'failure',
-            'response' => 'lack_user_id_parameter'
+            'response' => 'miss_raw_message_parameter'
         );
     }
 
-    if (isset($_GET['raw_message'])) {
-        $room_number_array['raw_message'] = urldecode(trim($_GET['raw_message']));
-    } else {
-        return array(
-            'status' => 'failure',
-            'response' => 'lack_raw_message_parameter'
-        );
-    }
-
-    if (isset($_GET['source'])) {
-        if (data_source_check($_GET['source'], 1)) {
-            $room_number_array['source'] = $_GET['source'];
+    if (isset($request['source'])) {
+        if ($request['method'] == 'GET') {
+            $source = urldecode($request['source']);
+        } else {
+            $source = $request['source'];
+        }
+        if (data_source_info($source, 'check_data_source')) {
+            $room_number_array['source_info'] = array(
+                'name' => $source,
+                'type' => data_source_info($request['source'], 'get_source_type')
+            );
         } else {
             return array(
                 'status' => 'failure',
@@ -56,12 +64,12 @@ function submit_room_number()
     } else {
         return array(
             'status' => 'failure',
-            'response' => 'lack_source_parameter'
+            'response' => 'miss_source_parameter'
         );
     }
 
-    if (isset($_GET['token'])) {
-        if (!data_source_check($_GET['source'], 2, $_GET['token'])) {
+    if (isset($request['token'])) {
+        if (data_source_info($request['source'], 'get_source_token') != $request['token']) {
             return array(
                 'status' => 'failure',
                 'response' => 'invalid_token'
@@ -70,19 +78,21 @@ function submit_room_number()
     } else {
         return array(
             'status' => 'failure',
-            'response' => 'lack_token_parameter'
+            'response' => 'miss_token_parameter'
         );
     }
 
-    if (isset($_GET['type'])) {
-        if ($_GET['type'] == 25) {
-            $room_number_array['type'] = '25万房';
-        } elseif ($_GET['type'] == 18) {
-            $room_number_array['type'] = '18万大师房';
-        } elseif ($_GET['type'] == 12) {
-            $room_number_array['type'] = '12万高手房';
-        } elseif ($_GET['type'] == 7) {
-            $room_number_array['type'] = '7万常规房';
+    if (isset($request['type'])) {
+        if ($request['type'] == '25') {
+            $room_number_array['type'] = '25';
+        } elseif ($request['type'] == '18') {
+            $room_number_array['type'] = '18';
+        } elseif ($request['type'] == '12') {
+            $room_number_array['type'] = '12';
+        } elseif ($request['type'] == '7') {
+            $room_number_array['type'] = '7';
+        } elseif ($request['type'] == 'other') {
+            $room_number_array['type'] = 'other';
         } else {
             return array(
                 'status' => 'failure',
@@ -90,32 +100,7 @@ function submit_room_number()
             );
         }
     } else {
-        if (
-            stristr($room_number_array['raw_message'], '25w') or
-            stristr($room_number_array['raw_message'], '25万')
-        ) {
-            $room_number_array['type'] = '25万房';
-        } elseif (
-            stristr($room_number_array['raw_message'], '18w') or
-            stristr($room_number_array['raw_message'], '18万') or
-            strstr($room_number_array['raw_message'], '大师房')
-        ) {
-            $room_number_array['type'] = '18万大师房';
-        } elseif (
-            stristr($room_number_array['raw_message'], '12w') or
-            stristr($room_number_array['raw_message'], '12万') or
-            strstr($room_number_array['raw_message'], '高手房')
-        ) {
-            $room_number_array['type'] = '12万高手房';
-        } elseif (
-            stristr($room_number_array['raw_message'], '7w') or
-            stristr($room_number_array['raw_message'], '7万') or
-            strstr($room_number_array['raw_message'], '常规房')
-        ) {
-            $room_number_array['type'] = '7万常规房';
-        } else {
-            $room_number_array['type'] = '';
-        }
+        $room_number_array['type'] = classify_room_number_type($room_number_array['raw_message']);
     }
 
     $timestamp = micro_second_time();
@@ -136,6 +121,65 @@ function submit_room_number()
         }
     }
     if ($push_flag) {
+        if (isset($request['user_id'])) {
+            if (is_numeric($request['user_id']) and !strpos($request['user_id'], '.')) {
+                $dbh_bandori_station = db_select('bandori_station');
+                if ($room_number_array['source_info']['type'] == 'qq') {
+                    $sth = $dbh_bandori_station->prepare("SELECT user_id FROM block_list WHERE type = 'qq' AND user_id = " . $request['user_id']);
+                    $sth->execute();
+                    if ($sth->fetch(PDO::FETCH_ASSOC)) {
+                        return array(
+                            'status' => 'failure',
+                            'response' => 'banned_user'
+                        );
+                    }
+
+                    $sth = $dbh_bandori_station->prepare("SELECT user_id, username, avatar FROM website_account WHERE qq = " . $request['user_id']);
+                    $sth->execute();
+                    $sql_result = $sth->fetch(PDO::FETCH_ASSOC);
+                    if ($sql_result) {
+                        $sth = $dbh_bandori_station->prepare("SELECT user_id FROM block_list WHERE type = 'local' AND user_id = " . $sql_result['user_id']);
+                        $sth->execute();
+                        if ($sth->fetch(PDO::FETCH_ASSOC)) {
+                            return array(
+                                'status' => 'failure',
+                                'response' => 'banned_user'
+                            );
+                        }
+
+                        $room_number_array['user_info'] = array(
+                            'type' => 'local',
+                            'user_id' => intval($sql_result['user_id']),
+                            'username' => $sql_result['username'],
+                            'avatar' => $sql_result['avatar']
+                        );
+                    } else {
+                        $room_number_array['user_info'] = array(
+                            'type' => 'qq',
+                            'user_id' => intval($request['user_id']),
+                            'username' => 'QQ用户' . qq_mask($request['user_id']),
+                            'avatar' => 'qq_user_icon.png'
+                        );
+                    }
+                } else {
+                    return array(
+                        'status' => 'failure',
+                        'response' => 'undefined_source_type'
+                    );
+                }
+            } else {
+                return array(
+                    'status' => 'failure',
+                    'response' => 'illegal_user_id_formal'
+                );
+            }
+        } else {
+            return array(
+                'status' => 'failure',
+                'response' => 'miss_user_id_parameter'
+            );
+        }
+
         $redis->rPush($redis_key, json_encode($room_number_array));
         return array(
             'status' => 'success',
