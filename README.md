@@ -81,7 +81,7 @@ user_info:
 
 ### WebSocket
 
-请求地址 wss://api.bandoristation.com:50443 ，本接口将会定时返回房间数据，数据格式与HTTP/HTTPS接口的返回数据相同
+请求地址 wss://api.bandoristation.com:50443 ，本接口将会定时返回房间数据，数据格式与HTTP/HTTPS接口的返回数据相同。WebSocket需要客户端发送心跳包维持连接，心跳包内容可以是heartbeat或者其他任意数据，心跳包发送间隔为30秒
 
 ## 提交房间数据
 
