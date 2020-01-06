@@ -3,9 +3,9 @@ let ws = new WebSocket("wss://api.bandoristation.com:50443");
 let heartbeat_timer_id;
 ws.onopen = function() {
     console.log('Connected to WebSocket server.');
-    ws.send('heartbeat');
+    ws.send('heartbeat-bandoristation');
     heartbeat_timer_id = setInterval(function () {
-        ws.send('heartbeat');
+        ws.send('heartbeat-bandoristation');
     }, 30000);
 };
 ws.onmessage = function (event) {
