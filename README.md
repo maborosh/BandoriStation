@@ -9,6 +9,7 @@ The room number collection platform of Bang Dream! Girls Band Party!
 - mabo (收费) 购买机器人请见 https://mabo.ai/?help/purchase_agreement
 - kkrbot
 - 冲冲
+- Ami
 
 ## API说明
 
@@ -85,7 +86,7 @@ user_info:
 
 ## 提交房间数据
 
-目前仅提供HTTP/HTTPS接口，接口仅对其他邦邦房间数据平台（机器人或者网站）开放，不对个人开放。想要接入可以联系QQ 2287477889，如果加不了好友也可以发送邮件给maborosh@qq.com，我会主动联系你
+目前仅提供HTTP/HTTPS接口，接口仅对其他邦邦房间数据平台（机器人或者网站）开放，不对个人开放。想要接入可以联系QQ 2287477889，如果加不了好友也可以发送邮件给maborosh@qq.com，我会主动联系你。接入者请保持数据提交活跃度和质量，不合格者可能会被撤销
 
 #### 参数
 
