@@ -57,12 +57,12 @@ https://api.bandoristation.com/?function=query_room_number
 
 | 字段名 | 数据类型 | 说明 |
 | --- | --- | --- |
-| number | number | 房间号 |
+| number | string | 房间号 |
 | raw_message | string | 房间的说明文字/原始信息 |
-| source_info | array | 数据来源信息 |
+| source_info | object | 数据来源信息 |
 | type | string | 房间类型 |
 | time | number | 房间的发布时间，13位时间戳 |
-| user_info | array | 用户信息 |
+| user_info | object | 用户信息 |
 
 source_info:
 
@@ -93,7 +93,7 @@ user_info:
 | 字段名 | 数据类型 | 填入值 | 说明 |
 | --- | --- | --- | --- |
 | function | string | submit_room_number |
-| number | number | 房间号 | 5-6位整数 |
+| number | string | 房间号 | 5-6位整数 |
 | user_id | number | 用户的唯一识别码 | QQ号或者其他ID |
 | raw_message | string | 房间的说明文字/原始信息 | 如果使用GET方式传入需要URL编码 |
 | source | string | 房间数据来源 | 机器人或者平台名称，如果是中文或者其他非英文、数字的字符并且使用GET方式传入需要URL编码 |
