@@ -5,7 +5,7 @@ function submit_room_number($request)
     $room_number_array = array();
     if (isset($request['number'])) {
         if (preg_match('/^[0-9]{5,6}$/', $request['number'])) {
-            $room_number_array['number'] = intval($request['number']);
+            $room_number_array['number'] = strval($request['number']);
         } else {
             return array(
                 'status' => 'failure',
