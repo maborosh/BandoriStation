@@ -1,0 +1,135 @@
+@import "constants";
+
+html {
+  font-size: 10px;
+  color: $font_color;
+}
+
+body {
+  //background-image: url("assets/images/background_pattern.png");
+  font-size: 1.6rem;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.line-container {
+  margin-top: 1rem;
+}
+
+.line-container-lite {
+  margin-top: 0.6rem;
+}
+
+.line-container-broad {
+  margin-top: 2rem;
+}
+
+.link-block {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.hyperlink {
+  cursor: pointer;
+  color: #4183c4;
+  user-select: none;
+  text-decoration: none;
+}
+
+.button-shape-round-rectangle {
+  border-radius: 0.6rem;
+}
+
+.button-shape-circle {
+  border-radius: 2rem;
+}
+
+.button-1 {
+  height: 4rem;
+  width: 100%;
+  line-height: 4rem;
+  font-size: 1.8rem;
+}
+
+.button-2 {
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  font-size: 1.8rem;
+}
+
+.checkbox-1 {
+  height: 3.5rem;
+  width: 16rem;
+  line-height: 3.5rem;
+  background-color: #515151;
+  border-radius: 1.8rem;
+  color: white;
+  padding: 0 1.8rem;
+}
+
+.dialog-confirm-button-container {
+  display: flex;
+  justify-content: space-between;
+  .dialog-confirm-button-single-container {
+    display: inline-block;
+    width: 48%;
+  }
+}
+
+.table {
+  display: table;
+  width: calc(100%);
+  border-collapse: collapse;
+  user-select: none;
+}
+
+.table-row {
+  display: table-row;
+  border-bottom: 0.1rem solid rgb(200, 200, 200);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.table-row:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.table-row-title {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8rem;
+  width: 8rem;
+  height: 5rem;
+}
+
+.table-row-content {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.8rem;
+  text-align: right;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  .inner-button-container {
+    display: inline-block;
+    width: 49%;
+  }
+}
