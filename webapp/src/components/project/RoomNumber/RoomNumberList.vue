@@ -1,6 +1,7 @@
 <template>
   <div id="room-number-list-container">
     <transition-group
+      id="room-number-list"
       name="flip-list"
       tag="div"
     >
@@ -267,15 +268,29 @@ export default {
 }
 
 #room-number-list-container {
+  position: absolute;
+  top: 5rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: {
+    x: hidden;
+    y: auto;
+  };
+}
+
+#room-number-list {
   width: 80rem;
-  margin: 6rem auto 1rem auto;
+  margin: 2rem auto;
   transition: 0.25s;
-  overflow-x: hidden;
   @media (max-width: 830px) {
     width: calc(100% - 1rem);
   }
   @media (max-width: 600px) {
-    margin-top: 5rem;
+    margin: {
+      top: 1rem;
+      bottom: 1rem;
+    };
     width: calc(100% - 1rem);
   }
 }

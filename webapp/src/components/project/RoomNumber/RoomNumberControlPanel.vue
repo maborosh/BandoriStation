@@ -1,12 +1,15 @@
 <template>
-  <div id="control-panel">
+  <div
+    class="control-panel"
+    :class="{ 'control-panel-pc': $store.state.misc.userDeviceType === 'PC' }"
+  >
     <div>
       <Button1
         class="button-2"
         color="3"
         shape="circle"
         :config="{ type: 'button' }"
-        @click.native="switchDialog('openChatRoom', true, true)"
+        @click.native="switchDialog('chatRoom', true, true)"
       >
         <font-awesome-icon icon="comment" />
       </Button1>
@@ -66,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#control-panel {
+.control-panel {
   position: fixed;
   right: calc(50% - 46rem);
   bottom: 10rem;
@@ -74,6 +77,12 @@ export default {
   @media (max-width: 960px) {
     right: 10px;
     bottom: 20px;
+  }
+}
+
+.control-panel-pc {
+  @media (max-width: 960px) {
+    right: 20px;
   }
 }
 </style>

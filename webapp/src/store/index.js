@@ -89,7 +89,7 @@ const modal = {
           sendRoomNumber: false,
           setRoomNumberFilter: false,
           informUser: false,
-          openChatRoom: false
+          chatRoom: false
         },
         VerifyEmail: {
           changeEmail: false
@@ -114,6 +114,18 @@ const route = {
     updatePage (state, payload) {
       state.latestPage = payload.from
       state.currentPage = payload.to
+    }
+  }
+}
+
+const misc = {
+  namespaced: true,
+  state: () => ({
+    userDeviceType: ''
+  }),
+  mutations: {
+    setUserDeviceType (state, device) {
+      state.userDeviceType = device
     }
   }
 }
@@ -164,6 +176,7 @@ export default new Vuex.Store({
     account,
     navbar,
     modal,
-    route
+    route,
+    misc
   }
 })

@@ -1,8 +1,17 @@
+const IS_DEV = false
 
-export const SERVER_URL = 'https://server.bandoristation.com'
-export const API_URL = 'https://api.bandoristation.com'
-export const WEBSOCKET_API_URL = 'wss://api.bandoristation.com'
-export const ASSETS_URL = 'https://asset.bandoristation.com'
+export const SERVER_URL = IS_DEV
+  ? 'http://server.test.bandoristation.com'
+  : 'https://server.bandoristation.com'
+export const API_URL = IS_DEV
+  ? 'http://api.test.bandoristation.com'
+  : 'https://api.bandoristation.com'
+export const WEBSOCKET_API_URL = IS_DEV
+  ? 'ws://api.test.bandoristation.com'
+  : 'wss://api.bandoristation.com'
+export const ASSETS_URL = IS_DEV
+  ? 'http://asset.test.bandoristation.com'
+  : 'https://asset.bandoristation.com'
 
 export const ERROR_CODE_DEFINITION = {
   'Not allowed': '不允许的操作',
@@ -27,7 +36,8 @@ export const ERROR_CODE_DEFINITION = {
   'Username or email already exists': '用户名或邮箱已被注册',
   'Username already exists': '用户名已经存在',
   'QQ already exists': '该QQ号已经被绑定',
-  'Undefined verification request': '未找到验证请求'
+  'Undefined verification request': '未找到验证请求',
+  'Duplicate number submit': '两次提交间隔过短，请稍后再试'
 }
 
 export const BANNED_ROOM_NUMBER_PATTERN = [

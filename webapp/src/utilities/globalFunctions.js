@@ -44,3 +44,21 @@ export function buttonHold (interval, setCountDownText, afterHold) {
     }
   }, 1000)
 }
+
+export function checkUserDeviceType () {
+  if (navigator.userAgent.match(/Windows NT/i)) {
+    store.commit('misc/setUserDeviceType', 'PC')
+  } else if (navigator.userAgent.match(/Macintosh/i)) {
+    store.commit('misc/setUserDeviceType', 'PC')
+  } else if (navigator.userAgent.match(/iPhone/i)) {
+    store.commit('misc/setUserDeviceType', 'Mobile')
+  } else if (navigator.userAgent.match(/iPad/i)) {
+    store.commit('misc/setUserDeviceType', 'Mobile')
+  } else if (navigator.userAgent.match(/Android/i)) {
+    store.commit('misc/setUserDeviceType', 'Mobile')
+  } else if (navigator.userAgent.match(/Windows Phone/i)) {
+    store.commit('misc/setUserDeviceType', 'Mobile')
+  } else {
+    store.commit('misc/setUserDeviceType', 'Other')
+  }
+}

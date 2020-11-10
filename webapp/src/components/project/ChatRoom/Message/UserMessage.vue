@@ -25,16 +25,12 @@
             v-if="message.user_info.title"
             class="user-title"
           />
-          <div class="user-name">
-            {{ message.user_info.username }}
-          </div>
+          <span class="user-name">{{ message.user_info.username }}</span>
         </div>
-        <div
+        <span
           class="message-content"
           :class="{ 'message-content-self-message': isSelfMessage }"
-        >
-          {{ message.content }}
-        </div>
+        >{{ message.content }}</span>
       </div>
     </div>
   </transition>

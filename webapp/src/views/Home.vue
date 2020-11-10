@@ -6,9 +6,9 @@
     />
     <ChatRoom
       ref="chatRoom"
-      :display-modal="$store.state.modal.dialog.Home.openChatRoom"
+      :display-modal="$store.state.modal.dialog.Home.chatRoom"
       :websocket-worker="websocketWorker"
-      @hideModalEvent="switchDialog('openChatRoom', false)"
+      @hideModalEvent="switchDialog('chatRoom', false)"
     />
   </div>
 </template>

@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div class="message-content">
-      {{ message.content }}
-    </div>
+    <span class="message-content">{{ message.content }}</span>
   </div>
 </template>
 
@@ -27,6 +25,7 @@ export default {
 }
 
 .message-content {
+  display: block;
   text-align: center;
   color: rgb(150, 150, 150);
   font-size: 1.2rem;

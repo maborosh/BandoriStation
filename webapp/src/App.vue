@@ -20,6 +20,7 @@ export default {
     NoticeContainer
   },
   created () {
+    this.$globalFunctions.checkUserDeviceType()
     if (this.$cookies.isKey('token')) {
       const token = this.$cookies.get('token')
       initializeAccountSetting(
