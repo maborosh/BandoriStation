@@ -8,8 +8,11 @@ The room number collection platform of Bang Dream! Girls Band Party!
 - Tsugu 拉机器入群请联系QQ 1810972564
 - mabo
 - kkrbot
-- 冲冲
+- 喵喵喵
 - Ami
+- Quo丶Vadis
+- Rinko
+- Himari
 
 ## 接入本站
 
